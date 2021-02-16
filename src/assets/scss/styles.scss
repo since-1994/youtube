@@ -1,0 +1,84 @@
+// config
+@import "./config/reset.scss";
+@import "./config/variables";
+// pages
+@import "./pages/search.scss";
+@import "./pages/videoDetail.scss";
+@import "./pages/join.scss";
+@import "./pages/login.scss";
+@import "./pages/userDetail.scss";
+@import "./pages/editProfile.scss";
+@import "./pages/changePassword.scss";
+@import "./pages/upload.scss";
+
+// mixin & partials
+@import "./mixins/avatar.scss";
+@import "./mixins/videoPlayer.scss";
+@import "./mixins/comment.scss";
+@import "./partials/header.scss";
+@import "./partials/socialLogin.scss";
+@import "./partials/footer.scss";
+@import "./partials/hamburger.scss";
+
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: "Oswald", sans-serif;
+}
+body {
+  overflow: scroll;
+  background-color: #f9f9f9;
+  &.active {
+    overflow: hidden;
+  }
+}
+a {
+  text-decoration: none;
+  color: black;
+  &:link {
+    color: inherit;
+  }
+}
+
+main {
+  min-height: 100vh;
+  .videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-auto-rows: 270px;
+    gap: 0.5rem;
+    padding: 10px;
+    .videoBlock {
+      .videoBlock__thumbnail {
+        object-fit: cover;
+        width: 100%;
+        height: 60%;
+      }
+      .description {
+        height: 40%;
+        font-size: 0.8rem;
+        margin-top: 5px;
+        display: flex;
+        .avatar {
+          @include avatar(rgb(214, 82, 82), pink);
+          margin-right: 1.2rem;
+        }
+        .description__text {
+          max-width: 70%;
+          line-height: 1.4;
+          .videoBlock__title {
+            font-weight: 500;
+          }
+          .videoBlock__views,
+          .videoBlock__creator {
+            color: rgba(0, 0, 0, 0.55);
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    min-height: 5vh;
+  }
+}

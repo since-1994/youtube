@@ -1,0 +1,123 @@
+@keyframes expand {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+
+  75% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.videoPlayer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  &:hover {
+    .videoPlayer__controls {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  video {
+    background-color: rgba(0, 0, 0, 0.9);
+    max-height: 60vh;
+    width: 100%;
+    // object-fit: contain;
+    &.active {
+      max-height: 100vh;
+      height: 100vh;
+    }
+  }
+  .videoPlayer__controls {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    position: absolute;
+    color: white;
+    opacity: 0;
+    z-index: 9;
+    bottom: 0;
+    transform: translateY(100%);
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    transition: all 0.4s linear;
+    .videoPlayer__column {
+      height: 2rem;
+      display: flex;
+      // align-items: center;
+      cursor: pointer;
+      span {
+        display: flex;
+        align-items: center;
+        &.expand {
+          &:hover {
+            animation-name: expand;
+            animation-duration: 1s;
+          }
+        }
+        &.volume {
+          span {
+            width: 1.3rem;
+          }
+          input {
+            cursor: pointer;
+            opacity: 0;
+            outline: none;
+            margin-left: 1rem;
+            width: 100%;
+            transition: all 0.2s ease-in;
+            appearance: none;
+            background: linear-gradient(
+              to right,
+              white 0%,
+              white 50%,
+              rgba(173, 167, 167, 0.6) 50%,
+              rgba(173, 167, 167, 0.6) 100%
+            );
+            height: 0.25rem;
+            width: 4rem;
+            border-radius: 0.1rem;
+            &::-webkit-slider-thumb {
+              appearance: none;
+              width: 0.8rem;
+              height: 0.8rem;
+              border-radius: 50%;
+              background: white;
+            }
+          }
+          &:hover,
+          &:active {
+            input {
+              opacity: 1;
+            }
+          }
+        }
+        &.timeline {
+          font-size: 0.75rem;
+          color: rgb(192, 184, 184);
+          transform: translateX(-5rem);
+          transition: all 0.4s ease-in;
+          span {
+            margin-right: 0.3rem;
+          }
+          &.active {
+            transform: translateX(0);
+          }
+        }
+      }
+      &:first-child {
+        & > span {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

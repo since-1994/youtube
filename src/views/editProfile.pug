@@ -1,0 +1,22 @@
+extends layouts/main
+
+block content
+    .form-container--edit-profile
+        form(action=`/users${routes.editProfile}`, method="post", enctype="multipart/form-data")
+            label(for="avatar")
+                .avatar.avatar--edit-profile
+                    if user.avatarUrl
+                        img(src=user.avatarUrl)
+                        .camera-background
+                            i.fas.fa-camera
+                    else
+                        i.fas.fa-user-alt
+                        .camera-background
+                            i.fas.fa-camera
+            input(type="file", id="avatar", name="avatar", accept="image/*")
+            label(for="name") 이름
+            input(type="text", placeholder="Name", name="name", value =user.name)
+            label(for="email") 이메일
+            input(type="email", placeholder="Email", name="email", value=user.email)
+            input(type="submit", value="수정")
+        a.form-container__password(href=`/users${routes.changePassword}`) 비밀번호 변경

@@ -1,0 +1,16 @@
+mixin videoBlock(video = {})
+    .videoBlock
+        a(href=routes.videoDetail(video.id))
+            video.videoBlock__thumbnail(src=`/${video.videoFile}`, type="video/mp4")
+            .description
+                .desciption__user
+                    if(video.creatorAvatarUrl)
+                        .avatar
+                            img(src=video.creatorAvatarUrl)
+                    else
+                        .avatar
+                            i.fas.fa-user-alt
+                .description__text
+                    h4.videoBlock__title=video.title
+                    h6.videoBlock__creator #{video.creatorName}
+                    h6.videoBlock__views 조회수 #{video.views}회

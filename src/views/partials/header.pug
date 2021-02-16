@@ -1,0 +1,58 @@
+header.header
+    .header__column
+        a(href=routes.home)
+            i.fab.fa-youtube 
+            span YouTube
+            span.nation KR
+    .header__column
+        form(action=routes.search, method="get")
+            if searchingBy !== null
+                input(type="text", placeholder="검색", name="term", value=searchingBy)
+            else    
+                input(type="text", placeholder="검색", name="term")
+            button(type="submit") 
+                i.fas.fa-search
+    .header__column.last
+        ul
+            if !loggedUser
+                li
+                    a(href=routes.join) 회원가입
+                li
+                    a(href=routes.login).header__column__login 
+                        .avatar
+                            i.fas.fa-user
+                        h5 로그인
+                .hamburger
+                    .line1
+                    .line2
+            else 
+                li
+                    a(href=`/videos${routes.uploadVideos}`)
+                        i.fas.fa-upload
+                li
+                    a(href=routes.logout) Log Out
+                li
+                    a(href=`/users/${routes.userDetail(loggedUser._id)}`).header__column__user
+                        div.avatar
+                            if !loggedUser.avatarUrl
+                                i.fas.fa-user-alt
+                            else
+                                img.avatar_img(src= `/${loggedUser.avatarUrl}`)
+                .hamburger
+                    .line1
+                    .line2
+
+.header__menu
+    ul
+        if !user
+            li
+                a(href=routes.join) 회원가입
+            li
+                a(href=routes.login) 로그인
+        else 
+            li
+                a(href=`/videos${routes.uploadVideos}`) 비디오 업로드
+            li
+                a(href=routes.logout) 로그아웃
+            li
+                a(href=`/users${routes.me}`) 프로필

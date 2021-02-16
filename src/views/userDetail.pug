@@ -1,0 +1,38 @@
+extends layouts/main
+
+block content
+    .user-profile
+        .user-profile__main
+            .user-profile__img
+                if !user.avatarUrl
+                    .user-profile__avatar  
+                        div.avatar
+                            i.fas.fa-user-alt
+                else
+                    img(src=user.avatarUrl)
+                if loggedUser && loggedUser._id == user._id
+                        a(href=`/users${routes.editProfile}`)
+                            .user-profile__avatar__edit.user-profile__avatar__edit--edit
+                                |정보 수정
+                        a(href=`/users${routes.deleteAvatar}`)
+                            .user-profile__avatar__edit.user-profile__avatar__edit--delete
+                                |이미지 삭제
+            .line
+            .user-profile__name
+                if user.name
+                    span #{user.name}
+                else
+                    span 이름 없음
+        .user-profile__item
+            h4 이메일 
+            if user.email
+                span #{user.email}
+            else
+                span 등록된 이메일 없음
+        .user-profile__item
+            h4 이메일 
+            if user.email
+                span #{user.email}
+            else
+                span 등록된 이메일 없음
+        

@@ -1,0 +1,17 @@
+extends layouts/main
+
+block content
+    .form-container--login
+        form(action=routes.login, method="post")
+            h2.logo
+                span.blue G
+                span.red o
+                span.yellow o
+                span.blue g
+                span.green l
+                span.red e
+            span 로그인
+            input(type="email", name="email", placeholder="Email", required=true)
+            input(type="password", name="password", placeholder="Password", required=true)
+            input(type="submit",value="로그인")
+            include partials/socialLogin

@@ -1,0 +1,34 @@
+.hamburger {
+  cursor: pointer;
+  height: 100%;
+  width: 2rem;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  .line1,
+  .line2 {
+    margin: 2px;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &.active {
+    .line1 {
+      transform: rotateZ(40deg) translateY(4px);
+    }
+    .line2 {
+      transform: rotateZ(-40deg) translateY(-4px);
+    }
+    z-index: 2;
+  }
+}
+
+@media screen and (max-width: $MAX-WIDTH) {
+  .hamburger {
+    display: flex;
+  }
+}

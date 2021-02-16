@@ -1,0 +1,14 @@
+mixin comment(creator = {}, text)
+    .comment__element
+        a(href=`/users/${routes.userDetail(creator._id)}`).comment__avatar
+            .avatar
+                if !creator.avatarUrl
+                    i.fas.fa-user-alt
+                else
+                    img.avatar_img(src= `/${creator.avatarUrl}`)
+        h3.comment__avatar__name #{creator.name}
+        h3.comment__text #{text}
+        .comment__thumb
+            <i class="fas fa-thumbs-up"></i>
+            <i class="fas fa-thumbs-down"></i>
+            span 답글

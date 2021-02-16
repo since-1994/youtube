@@ -1,0 +1,55 @@
+extends layouts/main
+include mixins/videoPlayer
+include mixins/comment
+
+block content
+    .video__container
+        +videoPlayer({
+            src: video.fileUrl
+        })
+    .video__info
+        h5.video__title=video.title
+        .video__subtitle
+            .video__detail
+                span.video__views 조회수 #{video.views}회
+                span.space |
+                span.video__date #{1900+video.createdAt.getYear()}. #{video.createdAt.getMonth()+1}. #{video.createdAt.getDate()}
+            if loggedUser && video.creator._id == loggedUser._id
+                a(href=routes.editVideo(video.id)) 
+                    .video__edit 편집
+        .video__creator
+            a(href=`/users/${video.creator.id}`)
+                .video__creator__item.avatar 
+                    if video.creator.avatarUrl
+                        img(src=`/${video.creator.avatarUrl}`)
+                    else
+                        i.fas.fa-user
+            .video__creator__info
+                h5=video.creator.name
+                h5.follower 구독자 0 명
+                p.video__description=video.description  
+            .video__creator__follow
+                |구독
+        .video__comments
+            if video.comments.length === 1
+                span.video__comment-number 1 comment
+            else
+                span.video__comment-number 댓글 #{video.comments.length}개
+        
+            if loggedUser
+                .video__comment
+                    a(href=`/users/${routes.userDetail(loggedUser._id)}`).header__column__user
+                        .avatar
+                            if !loggedUser.avatarUrl
+                                i.fas.fa-user-alt
+                            else
+                                img.avatar_img(src= `/${loggedUser.avatarUrl}`)
+                    form.video__comment__form#jsCommentForm
+                        input#jsCommentText(type="text", placeholder="공개 댓글 추가...", name="comment")
+                        input#jsCommentButton(type="submit", value="댓글")
+                        
+            ul.video__comments__list
+                each comment in comments
+                    +comment(comment.creator, comment.text)
+    
+            

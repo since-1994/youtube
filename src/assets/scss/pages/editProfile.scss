@@ -1,0 +1,89 @@
+@import "../mixins/avatar.scss";
+
+.form-container--edit-profile {
+  width: 100%;
+  padding: 5rem 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    label {
+      width: fit-content;
+      cursor: pointer;
+      .avatar {
+        position: relative;
+        @include avatar(rgb(214, 82, 82), pink);
+        width: 8rem;
+        height: 8rem;
+        overflow: hidden;
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+        i.fa-user-alt {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 6rem;
+        }
+        .camera-background {
+          width: 100%;
+          position: absolute;
+          height: 2rem;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: rgba(0, 0, 0, 0.7);
+          i.fa-camera {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+          }
+        }
+      }
+    }
+    label {
+      margin-top: 1rem;
+    }
+    input {
+      margin-top: 0.5rem;
+      width: 40%;
+      padding: 1rem;
+      outline: none;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      font-size: 1.2rem;
+      border-radius: 1rem;
+      &[type="file"] {
+        display: none;
+      }
+      &[type="submit"] {
+        margin: 1rem;
+        cursor: pointer;
+        background-color: $blue;
+        filter: brightness(1.1);
+        border: none;
+        color: white;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .form-container__password {
+    width: 40%;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    color: $red;
+    text-align: center;
+  }
+}

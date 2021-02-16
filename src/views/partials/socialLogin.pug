@@ -1,0 +1,15 @@
+.social-login
+    a.social-login--github(href="/auth/github")
+            span
+                i.fab.fa-github 
+            if pageTitle === "Login"
+                |깃허브 계정으로 로그인
+            else    
+                |깃허브 계정으로 가입
+    a.social-login--facebook(href="#")
+            span
+                i.fab.fa-facebook 
+            if pageTitle === "Login"
+                |페이스북 계정으로 로그인
+            else    
+                |페이스북 계정으로 가입
