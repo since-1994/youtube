@@ -12,7 +12,7 @@ passport.use(User.createStrategy());
 passport.use(new GithubStrategey({
     clientID: process.env.GH_CLIENT_ID,
     clientSecret: process.env.GH_SECRET,
-    callbackURL: "http://localhost:4000/auth/github/callback"
+    callbackURL: process.env.PRODUCTION ? "https://thawing-waters-61909.herokuapp.com/auth/github/callback":"http://localhost:4000/auth/github/callback"
 }, githubLoginCallback));
 
 passport.serializeUser(function(user, done){
